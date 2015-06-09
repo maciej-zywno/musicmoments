@@ -69,6 +69,6 @@ class MomentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def moment_params
-      params.require(:moment).permit(:start, :stop, :name, :description, :youtube_vid, :user_id)
+      params.require(:moment).permit(:start, :stop, :name, :description, :youtube_vid, :user_id, :tag_list)
     end
 end
