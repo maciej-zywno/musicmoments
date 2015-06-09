@@ -5,4 +5,7 @@ Rails.application.routes.draw do
   root to: 'moments#index'
   devise_for :users
   resources :users
+
+  get '/moments/tag/:id' => 'moments#tag', :as => :tag_moments
+  resources :moments
 end
