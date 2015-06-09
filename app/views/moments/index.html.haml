@@ -1,6 +1,9 @@
 - tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class|
   = link_to tag.name, tag_moments_path(tag.name), class: css_class
 
+#pagination
+  = paginate @moments#, remote: true
+
 %ul.list-unstyled.row
   - @moments.each do |moment|
     %li.col-lg-4.col-sm-4.col-xs-6
@@ -15,14 +18,4 @@
         = "dislikes: #{moment.get_downvotes.size}"
         = link_to 'downvote', dislike_moment_path(moment), method: :put
         = link_to 'upvote', like_moment_path(moment), method: :put
-        -#%td
-        -#  - if policy(moment).show?
-        -#    = link_to 'Show', moment
-        -#%td
-        -#  - if policy(moment).edit?
-        -#    = link_to 'Edit', edit_moment_path(moment)
-        -#%td
-        -#  - if policy(moment).destroy?
-        -#    = link_to 'Destroy', moment, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
--#= link_to 'New Moment', new_moment_path

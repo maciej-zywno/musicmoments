@@ -3,7 +3,7 @@ class MomentsController < ApplicationController
 
   def tag
     @tags = Moment.tag_counts_on(:tags)
-    @moments = Moment.tagged_with(params[:id])
+    @moments = Moment.tagged_with(params[:id]).page(params[:page]).per(per_page)
     render action: 'index'
   end
 
@@ -21,7 +21,7 @@ class MomentsController < ApplicationController
   # GET /moments.json
   def index
     @tags = Moment.tag_counts_on(:tags)
-    @moments = Moment.all
+    @moments = Moment.all.page(params[:page]).per(per_page)
   end
 
   # GET /moments/1
