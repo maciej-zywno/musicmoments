@@ -1,10 +1,20 @@
 class MomentsController < ApplicationController
-  before_action :set_moment, only: [:show, :edit, :update, :destroy]
+  before_action :set_moment, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
 
   def tag
     @tags = Moment.tag_counts_on(:tags)
     @moments = Moment.tagged_with(params[:id])
     render action: 'index'
+  end
+
+  def upvote
+    @moment.upvote_by current_user
+    redirect_to moments_path
+  end
+
+  def downvote
+    @moment.downvote_by current_user
+    redirect_to moments_path
   end
 
   # GET /moments

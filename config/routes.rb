@@ -7,5 +7,10 @@ Rails.application.routes.draw do
   resources :users
 
   get '/moments/tag/:id' => 'moments#tag', :as => :tag_moments
-  resources :moments
+  resources :moments do
+    member do
+      put 'like', to: 'moments#upvote'
+      put 'dislike', to: 'moments#downvote'
+    end
+  end
 end
