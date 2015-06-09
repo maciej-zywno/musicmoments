@@ -1,5 +1,6 @@
 class Moment < ActiveRecord::Base
   acts_as_ordered_taggable
+  acts_as_votable
 
   belongs_to :user
 
