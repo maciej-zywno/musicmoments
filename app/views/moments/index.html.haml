@@ -1,0 +1,34 @@
+%h1 Listing moments
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Description
+      %th Tags
+      %th
+      %th
+      %th
+      %th
+
+  %tbody
+    - @moments.each do |moment|
+      %tr
+        %td= moment.name
+        %td= moment.description
+        %td= moment.tag_list
+        %td
+          %iframe{:width => '210', :height => '157', :src => youtube_link(moment.youtube_vid, moment.start)}
+        %td
+          - if policy(moment).show?
+            = link_to 'Show', moment
+        %td
+          - if policy(moment).edit?
+            = link_to 'Edit', edit_moment_path(moment)
+        %td
+          - if policy(moment).destroy?
+            = link_to 'Destroy', moment, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Moment', new_moment_path

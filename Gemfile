@@ -20,6 +20,9 @@ gem 'pundit'
 gem 'simple_form'
 gem 'upmin-admin'
 
+# music moments tags
+gem 'acts-as-taggable-on', '~> 3.4'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
