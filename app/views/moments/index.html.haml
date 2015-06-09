@@ -1,37 +1,24 @@
-%h1 Listing moments
-
 - tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class|
-  = link_to tag.name, tag_moments_path(tag.name), :class => css_class
+  = link_to tag.name, tag_moments_path(tag.name), class: css_class
 
-%table
-  %thead
-    %tr
-      %th Name
-      %th Description
-      %th Tags
-      %th
-      %th
-      %th
-      %th
+%ul.list-unstyled.row
+  - @moments.each do |moment|
+    %li.col-lg-4.col-sm-4.col-xs-6
+      %div
+        %iframe{width: '308', height: '175', src: youtube_link(moment.youtube_vid, moment.start)}
+        = 'tags:'
+        - moment.tag_list.each do |tag_name|
+          = link_to tag_name, tag_moments_path(tag_name), class: 'label'
+        = 'user: '
+        = link_to moment.user.name, moment.user
+        -#%td
+        -#  - if policy(moment).show?
+        -#    = link_to 'Show', moment
+        -#%td
+        -#  - if policy(moment).edit?
+        -#    = link_to 'Edit', edit_moment_path(moment)
+        -#%td
+        -#  - if policy(moment).destroy?
+        -#    = link_to 'Destroy', moment, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-  %tbody
-    - @moments.each do |moment|
-      %tr
-        %td= moment.name
-        %td= moment.description
-        %td= moment.tag_list
-        %td
-          %iframe{:width => '210', :height => '157', :src => youtube_link(moment.youtube_vid, moment.start)}
-        %td
-          - if policy(moment).show?
-            = link_to 'Show', moment
-        %td
-          - if policy(moment).edit?
-            = link_to 'Edit', edit_moment_path(moment)
-        %td
-          - if policy(moment).destroy?
-            = link_to 'Destroy', moment, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Moment', new_moment_path
+-#= link_to 'New Moment', new_moment_path
