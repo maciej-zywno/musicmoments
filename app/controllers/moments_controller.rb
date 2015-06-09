@@ -1,9 +1,16 @@
 class MomentsController < ApplicationController
   before_action :set_moment, only: [:show, :edit, :update, :destroy]
 
+  def tag
+    @tags = Moment.tag_counts_on(:tags)
+    @moments = Moment.tagged_with(params[:id])
+    render action: 'index'
+  end
+
   # GET /moments
   # GET /moments.json
   def index
+    @tags = Moment.tag_counts_on(:tags)
     @moments = Moment.all
   end
 
