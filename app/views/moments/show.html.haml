@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Start:
+  = @moment.start
+%p
+  %b Stop:
+  = @moment.stop
+%p
+  %b Name:
+  = @moment.name
+%p
+  %b Description:
+  = @moment.description
+%p
+  %b Youtube vid:
+  = @moment.youtube_vid
+%p
+  %b User:
+  = @moment.user_id
+
+= link_to 'Edit', edit_moment_path(@moment)
+\|
+= link_to 'Back', moments_path

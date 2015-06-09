@@ -1,0 +1,31 @@
+%h1 Listing moments
+
+%table
+  %thead
+    %tr
+      %th Start
+      %th Stop
+      %th Name
+      %th Description
+      %th Youtube vid
+      %th User
+      %th
+      %th
+      %th
+
+  %tbody
+    - @moments.each do |moment|
+      %tr
+        %td= moment.start
+        %td= moment.stop
+        %td= moment.name
+        %td= moment.description
+        %td= moment.youtube_vid
+        %td= moment.user_id
+        %td= link_to 'Show', moment
+        %td= link_to 'Edit', edit_moment_path(moment)
+        %td= link_to 'Destroy', moment, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Moment', new_moment_path
