@@ -13,7 +13,7 @@
         = link_to moment.user.name, moment.user
         = "likes: #{moment.get_upvotes.size}"
         = "dislikes: #{moment.get_downvotes.size}"
-        = link_to 'downvote', like_moment_path(moment), method: :put
+        = link_to 'downvote', dislike_moment_path(moment), method: :put
         = link_to 'upvote', like_moment_path(moment), method: :put
         -#%td
         -#  - if policy(moment).show?
