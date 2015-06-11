@@ -1,0 +1,21 @@
+- tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class|
+  = link_to tag.name, tag_moments_path(tag.name), class: css_class
+
+#pagination
+  = paginate @moments#, remote: true
+
+%ul.list-unstyled.row
+  - @moments.each do |moment|
+    %li.col-lg-4.col-sm-4.col-xs-6
+      %div
+        %iframe{width: '308', height: '175', src: youtube_link(moment.youtube_vid, moment.start)}
+        = 'tags:'
+        - moment.tag_list.each do |tag_name|
+          = link_to tag_name, tag_moments_path(tag_name), class: 'label'
+        = 'user: '
+        = link_to moment.user.name, moment.user
+        = "likes: #{moment.get_upvotes.size}"
+        = "dislikes: #{moment.get_downvotes.size}"
+        = link_to 'downvote', dislike_moment_path(moment), method: :put
+        = link_to 'upvote', like_moment_path(moment), method: :put
+
